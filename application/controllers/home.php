@@ -54,6 +54,14 @@ class Home extends CI_Controller
         $this->load->view('home/index',$data);
         
     }
+    
+    function detail($id)
+    {
+       $f = $this->home_model->detail($id);
+       $data['f']= $f;
+       $this->load->view('home/detail',$data);
+    }
+    
     function test()
     {
             $this->load->library('email');

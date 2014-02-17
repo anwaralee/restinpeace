@@ -26,6 +26,17 @@ class Home_model extends CI_model
         else
         return null;
     }
+    
+    function detail($id)
+    {
+        $q = $this->db->get_where('tbl_people', array('id'=>$id));
+        if($q->num_rows()>0)
+        {
+            return $q->row_array();
+        }
+        else
+        return null;
+    }
     function getrecent($offset,$num)
     {
         $this->db->limit($num,$offset);
