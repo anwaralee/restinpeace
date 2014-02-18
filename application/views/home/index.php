@@ -84,6 +84,8 @@ $this->load->view('header');
                                             </div>
                                             <div class="fbname">
                                             <?php
+                                            //var_dump(json_decode(file_get_contents('http://graph.facebook.com/'.$f['addedBy'])));
+                                            //echo $user_profile['email'];
                                             echo json_decode(file_get_contents('http://graph.facebook.com/'.$f['addedBy']))->name;
                                              ?> 
                                              </div>

@@ -7,12 +7,12 @@ class Home_model extends CI_model
         $q = $this->db->get_where('tbl_member',$arr);
         if($q->num_rows()>0)
         {
-            die('here');
+            //die('here');
             
         }
         else{
         $this->db->insert('tbl_member',$arr);
-            die('there');
+            //die('there');
         }
     }
     function getfeatured()

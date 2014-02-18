@@ -41,17 +41,31 @@ class Home extends CI_Controller
         }
         if(!$user)
         {
-            $scope = array('scope' => 'manage_pages,publish_stream');
+            $scope = array('scope' => 'manage_pages,publish_stream,email');
             $data['loginUrl'] = $facebook->getLoginUrl($scope);
         }
         else
         {
            $data['logoutUrl'] = $facebook->getLogoutUrl();
+           $data['user_profile'] = $facebook->api('/me');
            $this->home_model->saveuser($user);
            
         }
         $this->load->view('home/index',$data);
         
     }
-    
+    function test()
+    {
+            $this->load->library('email');
+			$config['mailtype'] = 'html';
+			$this->email->initialize($config);
+			$to='justdoit2045@gmail.com';
+			$this->email->from('shakti_banskar@yahoo.com', 'Shakti Banskar');
+			$this->email->to($to);
+            
+            $this->email->subject("Project Demo");
+			$this->email->message("Assalam Alaikum,<br><br>"."Since, its already been 15 days of your start, please prepare for the demo on 18th of January and deliver the project till 25th of January. My collegues are asking me again and again about the site of NIEF.<br/><br/>Jazakallahu khair,<br/>Shakti Banskar.");
+            			
+			$this->email->send();
+    }
 }
